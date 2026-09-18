@@ -61,3 +61,32 @@ In this project, the release represents the first stable version of the multi-fi
 Attaching the `bin/client` executable to the release allows users to download and run the compiled program without compiling the source code themselves.
 
 Therefore, the GitHub Release provides both the version information and the compiled executable for distribution.
+---------------------------------------------------------------------------------------------------------------------
+Feature--3
+Question 1
+
+Compare the Makefile changes between Part 2 and Part 3.
+
+Simple answer:
+
+In Part 2, the Makefile directly compiled the source files into object files and then linked those object files to create bin/client.
+
+In Part 3, the Makefile is modified to first create the static library lib/libmyutils.a using the object files. The final executable bin/client_static is then linked against this static library using -Llib -lmyutils.
+
+Question 2
+
+What is the purpose of ar and ranlib when creating a static library?
+
+ar is used to create and manage static library archive files (.a). It combines object files such as mystrfunctions.o and myfilefunctions.o into libmyutils.a.
+
+ranlib creates or updates the symbol index of a static library so that the linker can efficiently find the required functions.
+
+In our command, ar rcs was used. The s option creates the symbol index, so a separate ranlib command was not required.
+
+Question 3
+
+What does nm show when inspecting a static executable?
+
+nm displays the symbols contained in an executable or object file. It can show functions and variables along with their symbol types and addresses.
+
+In our static library, nm showed functions such as mystrlen, mystrcpy, mystrncpy, mystrcat, wordCount, and mygrep.
