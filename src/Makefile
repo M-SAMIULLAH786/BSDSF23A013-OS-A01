@@ -53,7 +53,7 @@ install:
 	mkdir -p /usr/local/bin
 	mkdir -p /usr/local/share/man/man3
 	cp ../bin/client /usr/local/bin/client
-	cp ../man/man3/*.1 /usr/local/share/man/man3/
+	cp ../man/man3/*.3 /usr/local/share/man/man3/
 	mandb
 
 

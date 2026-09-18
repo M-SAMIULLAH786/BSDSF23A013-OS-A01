@@ -124,3 +124,37 @@ We used:
 This allowed `client_dynamic` to find and load `libmyutils.so`.
 
 This demonstrates that the dynamic loader is responsible for finding and loading the required shared libraries when a dynamically linked program starts.
+
+---Feature 5
+---
+
+## Feature-5: Man Pages and Installation
+
+### Task 1: Man Pages
+
+Man pages were created for all utility functions in the `man/man3/` directory.
+
+The following man pages were created:
+
+- `mystrlen.1`
+- `mystrcpy.1`
+- `mystrncpy.1`
+- `mystrcat.1`
+- `wordCount.1`
+- `mygrep.1`
+
+Each man page contains the required `.TH`, `.SH NAME`, `.SH SYNOPSIS`, `.SH DESCRIPTION`, and `.SH AUTHOR` sections.
+
+### Task 2: Installation
+
+An `install` target was added to the Makefile.
+
+The install target copies:
+
+- `bin/client` to `/usr/local/bin/client`
+- Man pages to `/usr/local/share/man/man3/`
+
+Installation was tested using:
+
+```bash
+sudo make install
