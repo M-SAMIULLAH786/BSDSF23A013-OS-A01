@@ -12,4 +12,7 @@ run:
 clean:
 	$(MAKE) -C src clean
 
-.PHONY: all build run clean
+install:
+	$(MAKE) -C src install
+
+.PHONY: all build run clean install

@@ -49,4 +49,12 @@ clean:
 	rm -f $(BINDIR)/client_static
 	rm -f $(BINDIR)/client_dynamic
 
-.PHONY: all run clean
+install:
+	mkdir -p /usr/local/bin
+	mkdir -p /usr/local/share/man/man3
+	cp ../bin/client /usr/local/bin/client
+	cp ../man/man3/*.1 /usr/local/share/man/man3/
+	mandb
+
+
+.PHONY: all clean run install
