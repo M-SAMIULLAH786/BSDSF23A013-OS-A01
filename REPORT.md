@@ -90,3 +90,37 @@ What does nm show when inspecting a static executable?
 nm displays the symbols contained in an executable or object file. It can show functions and variables along with their symbol types and addresses.
 
 In our static library, nm showed functions such as mystrlen, mystrcpy, mystrncpy, mystrcat, wordCount, and mygrep.
+--------------------------------------------------------------------------------------------------------------------
+Feature-4 Question & Answers
+## Feature-4: Dynamic Library
+
+### 1. What is `-fPIC` and why is it fundamental for shared libraries?
+
+`-fPIC` means Position Independent Code. It creates code that can run correctly regardless of where the shared library is loaded in memory.
+
+It is important for shared libraries because the dynamic loader can load the library at different memory addresses without modifying the library code.
+
+### 2. Explain the difference in file size between `bin/client_static` and `bin/client_dynamic`.
+
+`client_static` is larger because the required library code is copied into the executable during static linking.
+
+`client_dynamic` is smaller because the library code is stored separately in `libmyutils.so`. The executable only contains references to the shared library.
+
+In this project:
+
+- `client_static` = 24K
+- `client_dynamic` = 20K
+
+### 3. What is `LD_LIBRARY_PATH`? Why was it necessary, and what does this demonstrate about the dynamic loader's responsibility?
+
+`LD_LIBRARY_PATH` is an environment variable that tells the dynamic loader additional directories where it should search for shared libraries.
+
+It was necessary because `libmyutils.so` was inside the project's `lib/` directory, which was not in the loader's default search paths.
+
+We used:
+
+`export LD_LIBRARY_PATH=$PWD/lib:$LD_LIBRARY_PATH`
+
+This allowed `client_dynamic` to find and load `libmyutils.so`.
+
+This demonstrates that the dynamic loader is responsible for finding and loading the required shared libraries when a dynamically linked program starts.
